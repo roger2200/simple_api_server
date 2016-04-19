@@ -3,6 +3,8 @@ var mongodb = require('mongodb');
 var app = express();
 var myDB;
 var mongodbURL = 'mongodb://roger2200:roger40914@ds011311.mlab.com:11311/learn';
+
+app.set('port', (process.env.PORT || 5000));
 mongodb.MongoClient.connect(mongodbURL, function(err, db) {
 	if (err) {
 		console.log(err);
@@ -28,4 +30,6 @@ response.end();
 }
 });
 });
-app.listen(5000);
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
